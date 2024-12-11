@@ -1,0 +1,91 @@
+---
+title: 'Comprehensive Resource and Hub for Employee Management'
+publishedAt: '2024-11-07'
+summary: 'Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think.'
+---
+
+![CVBZ](https://github.com/user-attachments/assets/9e8cab73-f2ee-4765-8abf-8ee3a4b98323)
+
+## Overview
+This project is a comprehensive application designed for employee management, attendance tracking, and payroll management. Built as part of my final school assignment, it was developed in collaboration with AKA-Group to provide a robust and interactive solution tailored to their needs.
+
+**Key Features:**
+- Employee management with an interactive and dynamic input system for bonuses and deductions.
+- Automatic salary calculations based on attendance records.
+- Geolocation-based attendance (employees can only check-in within a 30-meter radius of the company).
+- Separate interfaces for managers/admins and employees.
+
+
+**Achievement:**
+This project received the highest grade in the Final Year Project for the 9th batch of Software Engineering students at SMK Tunas Media,<span style={{ background: 'linear-gradient(to right, gold, orange)', WebkitBackgroundClip: 'text', color: 'transparent' }}> ranking 1st among all projects.</span>
+
+
+## Tech Stack
+- **Frontend:** React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Additional Tools:** Neovim, LazyGit
+
+![Dashboard](https://github.com/user-attachments/assets/8f44ee37-0f2e-4ced-98b7-f126938bb90b)
+
+## Features in Detail
+### 1. Employee Management
+The system provides a user-friendly interface for managing employee records, adding new employees, and updating their details.
+
+**Screenshot:**
+![Employee-Form](https://github.com/user-attachments/assets/3851beef-2fda-4fb5-9a56-e3a106f3571a)
+
+### 2. Attendance Tracking
+Attendance is managed dynamically with the following capabilities:
+- Automatic marking of **Alpha** status for employees who are absent for more than 2 hours past their shift start time.
+- Real-time attendance updates.
+
+#### Code Snippet: Auto-Mark Alpha
+The following code snippet demonstrates how the system automatically marks employees as **Alpha** if they are absent beyond the grace period of 2 hours. Unlike conventional attendance systems that store absent records directly into the database, this approach eliminates unnecessary database entries for non-attendance cases.
+
+```javascript
+if (!attendance) {
+    const shiftStartTime = new Date(date);
+    const [hours, minutes] = employee.shift.startTime.split(':');
+    shiftStartTime.setHours(hours, minutes, 0, 0); // Set shift start time
+
+    const gracePeriod = new Date(shiftStartTime);
+    gracePeriod.setHours(gracePeriod.getHours() + 2); // Grace period of 2 hours
+
+    if (today >= gracePeriod) {
+        attendanceRecords.push({
+            date: formattedDate,
+            status: 'Alpha',  // Status Alpha if more than 2 hours
+        });
+    }
+}
+```
+
+**Screenshot:**
+![Attendance-Record](https://github.com/user-attachments/assets/e5350b99-529f-40fd-84da-b54876f125bb)
+
+### 3. Payroll Management
+The system integrates attendance data to automate salary calculations, incorporating interactive fields for:
+- Bonus additions
+- Multiple deductions for absences
+
+**Screenshot:**
+![Payroll-Form](https://github.com/user-attachments/assets/49858311-8a16-4a74-8de5-014e075107d6)
+
+### 4. Employee Requests
+A dedicated page to handle employee leave requests or other submissions efficiently.
+
+**Screenshot:**
+![Request](https://github.com/user-attachments/assets/d7d75b74-547b-43d4-81d4-055d1045d45f)
+
+## Developer Setup
+During development, I utilized:
+- **Neovim**: For efficient and customizable code editing.
+- **LazyGit**: For seamless Git operations.
+
+**Screenshots:**
+![Stuf-Nvim](https://github.com/user-attachments/assets/2b9f13d9-2620-400b-8753-071cee6d0eb7)
+![Stuf-Lazygit](https://github.com/user-attachments/assets/75b0ea27-8fc2-47d8-be02-9274f38acadd)
+
+## Conclusion
+This project not only provided a practical solution for AKA-Group but also served as an excellent learning experience. It strengthened my skills in MERN stack development, real-time data handling, and creating user-centric interfaces.
